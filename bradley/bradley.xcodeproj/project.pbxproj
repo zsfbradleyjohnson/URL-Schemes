@@ -110,6 +110,7 @@
 				TargetAttributes = {
 					2C8827811D6E7B3F00C30132 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = 436LFY7TCV;
 					};
 				};
 			};
@@ -263,6 +264,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 436LFY7TCV;
 				INFOPLIST_FILE = bradley/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bradleyjohnson.bradley;
@@ -274,6 +276,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = 436LFY7TCV;
 				INFOPLIST_FILE = bradley/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.bradleyjohnson.bradley;
@@ -300,6 +303,7 @@
 				2C88279B1D6E7B3F00C30132 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -61,7 +61,28 @@
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         // 延时3s模拟处理后回调指定的 URL Schemes并传递结果
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@://?resultcode=6000&errormessage=paysuccess",urlschemes]]];
+        
+        if ([[[[UIDevice currentDevice] systemVersion] componentsSeparatedByString:@"."][0] integerValue] == 10) {
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@://?resultcode=6000&errormessage=paysuccess",urlschemes]] options:@{UIApplicationOpenURLOptionUniversalLinksOnly:@NO} completionHandler:^(BOOL success) {
+                
+                NSString * successStr = success?@"跳转成功":@"跳转失败";
+                
+                NSLog(@"%@",successStr);
+                
+            }];
+        } else {
+            if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"bradley://"]]) {
+                
+                NSLog(@"跳转成功");
+                
+                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat:@"%@://?resultcode=6000&errormessage=paysuccess",urlschemes]]];
+                
+            }else{
+                NSLog(@"跳转失败");
+                NSLog(@"未安装应用!");
+            }
+        }
+        
     });
 
     return YES;

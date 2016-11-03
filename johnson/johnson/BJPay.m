@@ -57,12 +57,30 @@ static BJPay * pay;
     
     self.dealwithBlock = completionBlock;
     
-    if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"bradley://"]]) {
-        NSString * urlString = [NSString stringWithFormat:@"bradley://%@?%@",schemeStr,orderStr];
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+    NSString * urlString = [NSString stringWithFormat:@"bradley://%@?%@",schemeStr,orderStr];
+    
+    if ([[[[UIDevice currentDevice] systemVersion] componentsSeparatedByString:@"."][0] integerValue] == 10) {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString] options:@{UIApplicationOpenURLOptionUniversalLinksOnly:@NO} completionHandler:^(BOOL success) {
+            
+            NSString * successStr = success?@"跳转成功":@"跳转失败";
+            
+            NSLog(@"%@",successStr);
+            
+        }];
     }else{
-        NSLog(@"未安装应用!");
+        if ([[UIApplication sharedApplication] canOpenURL:[NSURL URLWithString:@"bradley://"]]) {
+            
+            NSLog(@"跳转成功");
+            
+            [[UIApplication sharedApplication] openURL:[NSURL URLWithString:urlString]];
+            
+        }else{
+            NSLog(@"跳转失败");
+            NSLog(@"未安装应用!");
+        }
+
     }
+    
 }
 
 
